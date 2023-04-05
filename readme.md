@@ -1,4 +1,4 @@
-# Prototyping, examples & rethinking
+# Prototyping, examples and rethinking
 
 ## Под грифом «творчество»
 
