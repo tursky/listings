@@ -1,7 +1,10 @@
 // JS calculus
 'use strict';
 
-console.info('/** Trigonometric computations: **/\v');
+console.info(`
+/** 
+ * Trigonometric computations */
+`);
 
 // Dataset
 const degrees = [0, 15, 30, 60, 75, 90, 105, 120, 135, 150, 165, 180];
