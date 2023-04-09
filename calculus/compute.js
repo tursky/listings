@@ -15,7 +15,7 @@ const rad = (deg) => deg * Math.PI / 180;
 // Trigonometric math fns
 const cos = (x) => Math.cos(rad(x));
 const sin = (x) => Math.sin(rad(x));
-const exp = (x) => Math.sqrt(sin(x) + 1);
+const exp = (x) => Math.sqrt(sin(x) + 1/2);
 
 // Output
 const style = {
