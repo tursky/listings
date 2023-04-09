@@ -41,9 +41,9 @@ let Σ = String;
 
 // Computing
 const compute = (fns) => {
-  const summa = (coefficient, operator, value, result) =>
+  const formuala = (coefficient, operator, value, result) =>
     Σ(coefficient + operator + '(' + value + ')' + ' = ' + result);
-  const φ = curry(summa);
+  const φ = curry(formuala);
 
   const report = ({ Ορ, Vα, Rϵ }, Δ = 0.1, ω = ' ~ ') => {
     if (Δ) ω = style[Ορ];
