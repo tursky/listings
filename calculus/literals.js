@@ -1,4 +1,4 @@
-// Literals without $ using py-notation
+// Literals without $-dollar using py-notation
 
 const XXI = 'XXI';
 
