@@ -1,4 +1,4 @@
-// JS calculus
+// JS computations
 'use strict';
 
 console.info(`
