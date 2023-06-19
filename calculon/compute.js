@@ -1,4 +1,3 @@
-// JS computations
 'use strict';
 
 console.info(`
