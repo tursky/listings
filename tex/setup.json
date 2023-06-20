@@ -1,0 +1,15 @@
+{
+	"src": "application",
+	"pdfprint": "preprint",
+	"dist": "build",
+	"works": [
+		{
+			"name": "Dissertation",
+			"exec": "main.tex"
+		},
+		{
+			"name": "Presentation",
+			"exec": "inc/frames.tex"
+		}
+	]
+}
