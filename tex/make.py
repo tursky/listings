@@ -11,7 +11,8 @@ import datetime
 def read(filename):
     with open(filename, "r", encoding="utf=8") as file:
         return json.load(file)
-        
+
+
 config = read("setup.json")
 
 
@@ -42,26 +43,41 @@ TEMPORARY = "archive"
 def build(main=EXEC, tex=APPLICATION, preprint=PRINTNAME, build=OUTPUT):
     filename, ext = os.path.splitext(main)
     executefile = "".join([tex, "/", filename])
-    cmd = ['latexmk', '-xelatex', '-synctex=1',  '-interaction=nonstopmode', f'-jobname={preprint}', f'-output-directory={build}', executefile]
+    cmd = [
+        "latexmk",
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        f"-jobname={preprint}",
+        f"-output-directory={build}",
+        executefile,
+    ]
     subprocess.run(cmd)
+
 
 def open(preprint=PDF, build=OUTPUT):
     absolute_path = os.path.dirname(__file__)
     relative_path = "".join([build, "/", preprint])
-    pdf_filename = ''.join([absolute_path, "/", relative_path])
+    pdf_filename = "".join([absolute_path, "/", relative_path])
 
     # check if PDF is successfully generated
     if not os.path.exists(pdf_filename):
-        raise RuntimeError('PDF output not found')
+        raise RuntimeError("PDF output not found")
 
     OS = platform.system().lower()
 
-	# open PDF with platform-specific command
+    # open PDF with platform-specific command
     match OS:
-        case "darwin": subprocess.run(['open', pdf_filename])
-        case "windows": os.startfile(pdf_filename)
-        case "linux": subprocess.run(['xdg-open', pdf_filename])
-        case _: raise RuntimeError('Unknown operating system "{}"'.format(platform.system()))
+        case "darwin":
+            subprocess.run(["open", pdf_filename])
+        case "windows":
+            os.startfile(pdf_filename)
+        case "linux":
+            subprocess.run(["xdg-open", pdf_filename])
+        case _:
+            raise RuntimeError(
+                'Unknown operating system "{}"'.format(platform.system())
+            )
 
 
 extnames = [
@@ -116,7 +132,8 @@ def press(release=DIST, doc=NAME, preprint=PDF, build=OUTPUT, archive=TEMPORARY)
     if release is None:
         doc = commit(doc)
         dist = "".join([build, "/", archive])
-    else: dist = "".join([build, "/", release])
+    else:
+        dist = "".join([build, "/", release])
     pdf = "".join([build, "/", preprint])
     if os.path.exists(pdf):
         sources = os.listdir(os.getcwd())
@@ -139,11 +156,9 @@ def generate(list=ALL, release=DIST):
         press(release, tex["name"])
         clean()
 
+
 def analyze(self):
-    tools = {
-        "linter": ["pylint", __file__],
-        "formatter": ["black", __file__]
-    }
+    tools = {"linter": ["pylint", __file__], "formatter": ["black", __file__]}
     cmd = tools[self]
     subprocess.run(cmd)
 
@@ -157,9 +172,9 @@ scenario = {
     "all": [generate],
     "archive": [build, lambda: press(None), clean],
     "open": [open],
-	"dev": [build, open],
+    "dev": [build, open],
     "runfmt": [lambda: analyze("formatter")],
-    "runlint": [lambda: analyze("linter")]
+    "runlint": [lambda: analyze("linter")],
 }
 
 
