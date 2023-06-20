@@ -1,0 +1,20 @@
+# Ignore latex assembly files
+build/*
+
+/**/*.aux
+/**/*.fdb_latexmk
+/**/*.fls
+/**/*.lof
+/**/*.log
+/**/*.lol
+/**/*.lot
+/**/*.nav
+/**/*.out
+/**/*.snm
+/**/*.gz
+/**/*.toc
+/**/*.xdv
+
+# Exclude directories with latex compiled PDF
+!build/archive/
+!build/release/
