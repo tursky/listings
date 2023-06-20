@@ -139,6 +139,14 @@ def generate(list=ALL, release=DIST):
         press(release, tex["name"])
         clean()
 
+def analyze(self):
+    tools = {
+        "linter": ["pylint", __file__],
+        "formatter": ["black", __file__]
+    }
+    cmd = tools[self]
+    subprocess.run(cmd)
+
 
 scenario = {
     "build": [build],
@@ -149,7 +157,9 @@ scenario = {
     "all": [generate],
     "archive": [build, lambda: press(None), clean],
     "open": [open],
-	"dev": [build, open]
+	"dev": [build, open],
+    "runfmt": [lambda: analyze("formatter")],
+    "runlint": [lambda: analyze("linter")]
 }
 
 
