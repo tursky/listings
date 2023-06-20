@@ -1,0 +1,17 @@
+[tool.poetry]
+name = 'Console LaTeX IDE (CLI)'
+version = '1.0.0'
+description = "Deployment system for TEX projects"
+authors = ["Tursky Stanislav <tursky.sv@protonmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = '^3.11.3'
+
+[tool.poetry.dev-dependencies]
+black = '^23.3.0'
+pylint = '^2.17.4'
+
+[tool.black]
+line-length = 88
+skip-string-normalization = false
