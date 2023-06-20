@@ -180,7 +180,7 @@ scenario = {
 
 def run(instruction):
     if not instruction in scenario:
-        sys.exit(">>> Use one argument: build, clean, release, all, archive, open, dev")
+        sys.exit(">>> Use one argument: build, clean, release, all, archive, open, dev, rm")
     directives = scenario[instruction]
     for directive in directives:
         directive()
