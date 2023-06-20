@@ -171,14 +171,16 @@ scenario = {
     "archive": [build, lambda: press(None), clean],
     "open": [open],
     "dev": [build, open],
-    "runfmt": [lambda: analyze("formatter")],
-    "runlint": [lambda: analyze("linter")],
+    "pyfmt": [lambda: analyze("formatter")],
+    "pylint": [lambda: analyze("linter")],
 }
 
 
 def run(instruction):
     if not instruction in scenario:
-        sys.exit(">>> Use one argument: build, clean, release, all, archive, open, dev, rm")
+        sys.exit(
+            ">>> Use one argument: build, clean, release, all, archive, open, dev, rm"
+        )
     directives = scenario[instruction]
     for directive in directives:
         directive()
