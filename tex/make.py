@@ -54,14 +54,12 @@ def build(main=EXEC, tex=APPLICATION, preprint=PRINTNAME, build=OUTPUT):
 
 
 def open(preprint=PDF, build=OUTPUT):
-    absolute_path = os.path.dirname(__file__)
-    relative_path = "".join([build, "/", preprint])
-    pdf_filename = "".join([absolute_path, "/", relative_path])
-
-    # check if PDF is successfully generated
-    if not os.path.exists(pdf_filename):
+    absolute = os.path.dirname(__file__)
+    relative = "".join([build, "/", preprint])
+    pdf_filename = "".join([absolute, "/", relative])
+    if not os.path.exists(pdf_filename):  # check if PDF is successfully generated
         raise RuntimeError("PDF output not found")
-
+        
     OS = platform.system().lower()
 
     # open PDF with platform-specific command
