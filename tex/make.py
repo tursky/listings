@@ -59,7 +59,7 @@ def open(preprint=PDF, build=OUTPUT):
     pdf_filename = "".join([absolute, "/", relative])
     if not os.path.exists(pdf_filename):  # check if PDF is successfully generated
         raise RuntimeError("PDF output not found")
-        
+
     OS = platform.system().lower()
 
     # open PDF with platform-specific command
@@ -176,9 +176,7 @@ scenario = {
 
 def run(instruction):
     if not instruction in scenario:
-        sys.exit(
-            ">>> Use one argument: build, clean, release, all, archive, open, dev, rm"
-        )
+        sys.exit(">>> Use one argument: build, clean, release, all, archive, open, dev")
     directives = scenario[instruction]
     for directive in directives:
         directive()
