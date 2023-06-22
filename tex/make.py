@@ -169,8 +169,8 @@ scenario = {
     "archive": [build, lambda: press(None), clean],
     "open": [open],
     "dev": [build, open],
-    "pyfmt": [lambda: analyze("formatter")],
-    "pylint": [lambda: analyze("linter")],
+    "lint": [lambda: analyze("linter")],
+    "fmt": [lambda: analyze("formatter")],
 }
 
 
