@@ -11,7 +11,7 @@ def read(filename):
         return json.load(file)
 
 
-config = read("setup.json")
+config = read("configurations.json")
 
 
 ROOT = config.get("src")
