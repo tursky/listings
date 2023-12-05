@@ -15,6 +15,6 @@ build/*
 /**/*.toc
 /**/*.xdv
 
-# Exclude directories with latex compiled PDF
-!build/archive/
+# Exclude latex directories with compiled PDFs
 !build/release/
+!build/archive/

@@ -11,44 +11,44 @@ def read(filename):
         return json.load(file)
 
 
-config = read("setup.json")
+config = read("configurations.json")
 
 
-APPLICATION = config.get("src")
-PRINTNAME = config.get("pdfprint")
-OUTPUT = config.get("dist")
-PROJECTS = config["works"]
+ROOT = config.get("src")
+PREPRINT = config.get("pdf")
+OUTPUT = config.get("out")
+TEX = config["tex"]
 
-PDF = "".join([PRINTNAME, ".pdf"])
-ALL = PROJECTS
+PDF = "".join([PREPRINT, ".pdf"])
+ALL = TEX
 
 NAME = (
-    PROJECTS[0]["name"]
-    if PROJECTS and isinstance(PROJECTS[0]["name"], str)
-    else sys.exit("Specify your TEX-sources!")
+    TEX[0]["name"]
+    if TEX and isinstance(TEX[0]["name"], str)
+    else sys.exit("Specify project name!")
 )
 
 EXEC = (
-    PROJECTS[0]["exec"]
-    if PROJECTS and isinstance(PROJECTS[0]["exec"], str)
-    else sys.exit("Specify your TEX-execute main file!")
+    TEX[0]["main"]
+    if TEX and isinstance(TEX[0]["main"], str)
+    else sys.exit("Specify main file!")
 )
 
-DIST = "release"
-TEMPORARY = "archive"
+DESTINATION = "release"
+TMP = "archive"
 
 
-def build(main=EXEC, tex=APPLICATION, preprint=PRINTNAME, build=OUTPUT):
+def build(main=EXEC, tex=ROOT, name=PREPRINT, out=OUTPUT):
     filename, ext = os.path.splitext(main)
-    executefile = "".join([tex, "/", filename])
+    maintex = "".join([tex, filename])
     cmd = [
         "latexmk",
         "-xelatex",
         "-synctex=1",
         "-interaction=nonstopmode",
-        f"-jobname={preprint}",
-        f"-output-directory={build}",
-        executefile,
+        f"-jobname={name}",
+        f"-output-directory={out}",
+        maintex,
     ]
     subprocess.run(cmd)
 
@@ -117,16 +117,16 @@ def remove(preprint=PDF, build=OUTPUT, default="main.pdf"):
 
 def commit(pdfname):
     formatDate = (
-        str(datetime.datetime.now().strftime(" ~ %b %d (%H-%Ms)"))
+        str(datetime.datetime.now().strftime(" — %b %d (%H-%Ms)"))
         .replace("/", ".")
         .replace("-", "h ")
     )
     return "".join([pdfname, formatDate])
 
 
-def press(release=DIST, doc=NAME, preprint=PDF, build=OUTPUT, archive=TEMPORARY):
+def press(release=DESTINATION, work=NAME, preprint=PDF, build=OUTPUT, archive=TMP):
     if release is None:
-        doc = commit(doc)
+        work = commit(work)
         dist = "".join([build, "/", archive])
     else:
         dist = "".join([build, "/", release])
@@ -137,7 +137,7 @@ def press(release=DIST, doc=NAME, preprint=PDF, build=OUTPUT, archive=TEMPORARY)
             if source.startswith(build):
                 if not os.path.exists(dist):
                     os.mkdir(dist)
-                filename = "".join([doc, ".pdf"])
+                filename = "".join([work, ".pdf"])
                 compiled = "".join([dist, "/", filename])
                 if os.path.exists(compiled):
                     os.remove(compiled)
@@ -146,9 +146,9 @@ def press(release=DIST, doc=NAME, preprint=PDF, build=OUTPUT, archive=TEMPORARY)
         sys.exit(">>> PDF preprint not found!")
 
 
-def generate(list=ALL, release=DIST):
+def generate(list=ALL, release=DESTINATION):
     for tex in list:
-        build(tex["exec"])
+        build(tex["main"])
         press(release, tex["name"])
         clean()
 
@@ -170,17 +170,17 @@ scenario = {
     "press": [press],
     "release": [build, press, clean],
     "all": [generate],
-    "archive": [build, lambda: press(None), clean],
+    "tmp": [build, lambda: press(None), clean],
     "open": [open],
     "dev": [build, open],
-    "lint": [lambda: analyze("linter")],
     "fmt": [lambda: analyze("formatter")],
+    "lint": [lambda: analyze("linter")],
 }
 
 
 def run(instruction):
     if not instruction in scenario:
-        sys.exit(">>> Use one argument: build, clean, release, all, archive, open, dev")
+        sys.exit(">>> Use one argument: build, clean, release, all, tmp, open, dev")
     directives = scenario[instruction]
     for directive in directives:
         directive()

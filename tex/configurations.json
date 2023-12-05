@@ -1,0 +1,15 @@
+{
+	"src": "./",
+	"pdf": "preprint",
+	"out": "build",
+	"tex": [
+		{
+			"name": "Article",
+			"main": "main.tex"
+		},
+		{
+			"name": "Presentation",
+			"main": "inc/frames.tex"
+		}
+	]
+}
