@@ -1,16 +1,16 @@
 [tool.poetry]
-name = 'Console LaTeX IDE (CLI)'
-version = '1.0.0'
-description = "Deployment system for TEX projects"
-authors = ["Tursky Stanislav <tursky.sv@protonmail.com>"]
+name = 'cybernetex'
+version = '0.0.1'
+description = "LaTeX document compilation script (console packet)"
+authors = ["Tursky S.V. <tursky.sv@protonmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = '^3.11.3'
+python = '^3.11.6'
 
 [tool.poetry.dev-dependencies]
-black = '^23.3.0'
-pylint = '^2.17.4'
+black = '^23.11.0'
+pylint = '^3.0.2'
 
 [tool.black]
 line-length = 88
