@@ -1,15 +1,15 @@
 {
 	"src": "./",
-	"pdfprint": "preprint",
-	"dist": "build",
-	"works": [
+	"pdf": "preprint",
+	"out": "build",
+	"tex": [
 		{
-			"name": "Dissertation",
-			"exec": "main.tex"
+			"name": "Article",
+			"main": "main.tex"
 		},
 		{
 			"name": "Presentation",
-			"exec": "inc/frames.tex"
+			"main": "inc/frames.tex"
 		}
 	]
 }
