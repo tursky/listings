@@ -40,7 +40,7 @@ TEMPORARY = "archive"
 
 def build(main=EXEC, tex=APPLICATION, preprint=PRINTNAME, build=OUTPUT):
     filename, ext = os.path.splitext(main)
-    executefile = "".join([tex, "/", filename])
+    executefile = "".join([tex, filename])
     cmd = [
         "latexmk",
         "-xelatex",

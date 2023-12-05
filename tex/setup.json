@@ -1,5 +1,5 @@
 {
-	"src": "application",
+	"src": "./",
 	"pdfprint": "preprint",
 	"dist": "build",
 	"works": [
