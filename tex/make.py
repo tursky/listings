@@ -154,8 +154,12 @@ def generate(list=ALL, release=DIST):
 
 
 def analyze(self):
-    tools = {"linter": ["pylint", __file__], "formatter": ["black", __file__]}
-    cmd = tools[self]
+    tool = self
+    list = {"linter": "pylint", "formatter": "black"}
+    cmd = [list[tool]]
+    cmd[0:0] = ["python"]
+    cmd[1:1] = ["-m"]
+    cmd.append(__file__)
     subprocess.run(cmd)
 
 
