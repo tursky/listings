@@ -62,8 +62,7 @@ def open(preprint=PDF, build=OUTPUT):
 
     OS = platform.system().lower()
 
-    # open PDF with platform-specific command
-    match OS:
+    match OS:  # open PDF with platform-specific command
         case "darwin":
             subprocess.run(["open", pdf_filename])
         case "windows":
@@ -71,9 +70,7 @@ def open(preprint=PDF, build=OUTPUT):
         case "linux":
             subprocess.run(["xdg-open", pdf_filename])
         case _:
-            raise RuntimeError(
-                'Unknown operating system "{}"'.format(platform.system())
-            )
+            raise RuntimeError(f"Unknown operating system: {platform.system()}")
 
 
 extnames = [
