@@ -4,12 +4,12 @@
 	"out": "build",
 	"tex": [
 		{
-			"name": "Article",
+			"name": "Coursework",
 			"main": "main.tex"
 		},
 		{
-			"name": "Presentation",
-			"main": "inc/frames.tex"
+			"name": "PPT",
+			"main": "ppt/main.tex"
 		}
 	]
 }
