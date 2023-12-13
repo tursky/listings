@@ -1,0 +1,16 @@
+{
+	"src": "./",
+	"pre": "preprint",
+	"out": "...",
+	"pdf": "work",
+	"tex": [
+		{
+			"name": "Coursework",
+			"main": "main.tex"
+		},
+		{
+			"name": "Slides",
+			"main": "tex/presentation/main.tex"
+		}
+	]
+}

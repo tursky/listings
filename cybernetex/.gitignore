@@ -1,6 +1,5 @@
 # Ignore latex assembly files
-build/*
-
+/**/*.pdf
 /**/*.aux
 /**/*.fdb_latexmk
 /**/*.fls
@@ -15,6 +14,8 @@ build/*
 /**/*.toc
 /**/*.xdv
 
-# Exclude latex directories with compiled PDFs
-!build/release/
-!build/archive/
+# Exclude latex release catalogue with compiled PDFs
+!work/**/*.pdf
+
+# Exclude other PDFs
+!assets/**/*.pdf

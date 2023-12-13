@@ -15,11 +15,11 @@ config = read("configurations.json")
 
 
 ROOT = config.get("src")
-PREPRINT = config.get("pdf")
+PREPRINT = config.get("pre")
 OUTPUT = config.get("out")
 TEX = config["tex"]
+DESTINATION = config.get("pdf")
 
-PDF = "".join([PREPRINT, ".pdf"])
 ALL = TEX
 
 NAME = (
@@ -34,7 +34,7 @@ EXEC = (
     else sys.exit("Specify main file!")
 )
 
-DESTINATION = "release"
+PDF = "".join([PREPRINT, ".pdf"])
 TMP = "archive"
 
 
@@ -126,7 +126,7 @@ def press(release=DESTINATION, work=NAME, preprint=PDF, build=OUTPUT, archive=TM
         work = commit(work)
         dist = "".join([build, "/", archive])
     else:
-        dist = "".join([build, "/", release])
+        dist = release
     pdf = "".join([build, "/", preprint])
     if os.path.exists(pdf):
         sources = os.listdir(os.getcwd())
