@@ -9,7 +9,7 @@
 			"main": "main.tex"
 		},
 		{
-			"name": "PPT",
+			"name": "Slides",
 			"main": "tex/presentation/main.tex"
 		}
 	]
