@@ -1,7 +1,8 @@
 {
 	"src": "./",
-	"pdf": "preprint",
-	"out": "build",
+	"pre": "preprint",
+	"out": "...",
+	"pdf": "work",
 	"tex": [
 		{
 			"name": "Coursework",
@@ -9,7 +10,7 @@
 		},
 		{
 			"name": "PPT",
-			"main": "ppt/main.tex"
+			"main": "tex/presentation/main.tex"
 		}
 	]
 }
